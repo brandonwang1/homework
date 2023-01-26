@@ -5,6 +5,7 @@ class LinearRegression:
     """
     Class for a linear regression model fitted using least squares.
     """
+
     w: np.ndarray
     b: float
 

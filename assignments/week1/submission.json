@@ -2,13 +2,15 @@
     "assignment_name": "Assignment 1",
     "contributors": [
         {
-            "name": "Jordan Matelsky",
-            "pennkey": "matelsky"
+            "name": "Brandon Wang",
+            "pennkey": "brandw"
+        },
+        {
+            "name": "Sahitya Senapathy",
+            "pennkey": "sahityas"
         }
     ],
     "sources": [
-        "https://example.com",
-        "Conversations with TA (include TA's name)",
-        "LLM (include information about the LLM and how it was used)"
+        "https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html"
     ]
 }
