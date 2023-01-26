@@ -15,7 +15,7 @@ class LinearRegression:
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
-        Fit the model to the given input and output data.
+        Fits the model to the given input and output data.
         X: (n, d) array of input data
         y: (n,) array of output data
         Ref https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html
