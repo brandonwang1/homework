@@ -1,6 +1,7 @@
 import torch
 from model import MLP
 
+
 def create_model(input_dim: int, output_dim: int) -> MLP:
     """
     Create a multi-layer perceptron model.
@@ -14,5 +15,6 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
         MLP: The created model.
 
     """
-    return MLP(input_dim, 32, output_dim, 2, torch.nn.ReLU, torch.nn.init.xavier_uniform_)
-
+    return MLP(
+        input_dim, 32, output_dim, 2, torch.nn.ReLU, torch.nn.init.xavier_uniform_
+    )
