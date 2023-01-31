@@ -1,7 +1,10 @@
 from typing import Callable
+import torch
 
-
-class MLP:
+class MLP(torch.nn.Module):
+    """
+    Trains a multi-layer perceptron on the MNIST dataset.
+    """
     def __init__(
         self,
         input_size: int,
@@ -21,9 +24,27 @@ class MLP:
             activation: The activation function to use in the hidden layer.
             initializer: The initializer to use for the weights.
         """
-        ...
+        super().__init__()
+        self.input_size = input_size
+        self.hidden_size = hidden_size
+        self.num_classes = num_classes
+        self.hidden_count = hidden_count
+        self.activation = activation()
 
-    def forward(self, x):
+        self.layers = torch.nn.ModuleList()
+        self.layers.append(torch.nn.Linear(input_size, hidden_size))
+        initializer(self.layers[0].weight)
+        self.layers.append(self.activation)
+        for _ in range(hidden_count):
+            self.layers.append(torch.nn.Linear(hidden_size, hidden_size))
+            initializer(self.layers[-1].weight)
+            self.layers.append(self.activation)
+        self.layers.append(torch.nn.Linear(hidden_size, num_classes))
+        initializer(self.layers[-1].weight)
+        self.layers.append(self.activation)
+
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         Forward pass of the network.
 
@@ -33,4 +54,7 @@ class MLP:
         Returns:
             The output of the network.
         """
-        ...
+        x = torch.flatten(x, 1)
+        for layer in self.layers:
+            x = layer(x)
+        return x
