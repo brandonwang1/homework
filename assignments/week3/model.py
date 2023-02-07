@@ -43,7 +43,7 @@ class MLP(torch.nn.Module):
             self.layers.append(self.activation)
         self.layers.append(torch.nn.Linear(hidden_size, num_classes))
         initializer(self.layers[-1].weight)
-        self.layers.append(self.activation)
+        # self.layers.append(self.activation)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
