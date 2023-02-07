@@ -4,7 +4,7 @@ from model import MLP
 
 def create_model(input_dim: int, output_dim: int) -> MLP:
     """
-    Create a multi-layer perceptron model.
+    Creates a multi-layer perceptron model.
 
     Arguments:
         input_dim (int): The dimension of the input data.
