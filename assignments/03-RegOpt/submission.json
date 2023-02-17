@@ -2,11 +2,13 @@
     "assignment_name": "RegOpt",
     "contributors": [
         {
-            "name": "Change this to your name",
-            "pennkey": "MyPennKey"
+            "name": "Brandon Wang",
+            "pennkey": "brandw"
         }
     ],
     "sources": [
-        "Don't forget to list your sources/attribution here!"
+        "ChatGPT",
+        "Pytorch Docs",
+        "Class Notebooks"
     ]
 }
