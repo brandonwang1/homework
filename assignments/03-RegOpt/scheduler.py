@@ -9,7 +9,7 @@ class CustomLRScheduler(_LRScheduler):
     """
 
     def __init__(
-        self, optimizer, last_epoch=-1, step_size=1000, max_lr=3e-3, min_lr=1e-3
+        self, optimizer, last_epoch=-1, step_size=2500, max_lr=0.002, min_lr=0.0005
     ):
         """
         Create a new scheduler for cyclic learning rate.
