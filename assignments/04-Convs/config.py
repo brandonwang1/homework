@@ -5,6 +5,8 @@ import torch.nn as nn
 from torchvision.transforms import Compose, ToTensor, Normalize
 
 torch.backends.cudnn.benchmark = True
+
+
 class CONFIG:
     batch_size = 128
     num_epochs = 8
@@ -14,7 +16,5 @@ class CONFIG:
     ] = lambda model: torch.optim.AdamW(model.parameters(), lr=2e-3)
 
     transforms = Compose(
-        [ToTensor(),
-         Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
-         ]
+        [ToTensor(), Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))]
     )
