@@ -1,16 +1,18 @@
 import torch.nn as nn
 import torch
 
+
 class Model(nn.Module):
     """
     Convolutional neural network model.
     """
+
     def __init__(self, num_channels: int, num_classes: int) -> None:
         """
         Initialize the model.
         """
         super(Model, self).__init__()
-        
+
         self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3, padding=1)
         self.bn1 = nn.BatchNorm2d(32)
         self.relu1 = nn.ReLU(inplace=True)
