@@ -13,13 +13,13 @@ class Model(nn.Module):
         """
         super(Model, self).__init__()
 
-        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3, stride=2, padding=1)
-        self.bn1 = nn.BatchNorm2d(32)
+        self.conv1 = nn.Conv2d(num_channels, 64, kernel_size=3, stride=2, padding=0)
+        self.bn1 = nn.BatchNorm2d(64)
         self.relu1 = nn.ReLU(inplace=True)
-        self.conv2 = nn.Conv2d(32, 32, kernel_size=3, stride=2, padding=1)
+        self.conv2 = nn.Conv2d(64, 32, kernel_size=3, stride=2, padding=0)
         self.bn2 = nn.BatchNorm2d(32)
         self.relu2 = nn.ReLU(inplace=True)
-        self.pool = nn.MaxPool2d(kernel_size=3, stride=2)
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         # self.fc1 = nn.Linear(128, 128)
         # self.bn3 = nn.BatchNorm1d(128)
         # self.relu3 = nn.ReLU(inplace=True)
