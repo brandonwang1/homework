@@ -2,7 +2,13 @@ import torch.nn as nn
 import torch
 
 class Model(nn.Module):
+    """
+    Convolutional neural network model.
+    """
     def __init__(self, num_channels: int, num_classes: int) -> None:
+        """
+        Initialize the model.
+        """
         super(Model, self).__init__()
         
         self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3, padding=1)
@@ -18,6 +24,9 @@ class Model(nn.Module):
         self.fc2 = nn.Linear(512, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """
+        Forward pass of the model.
+        """
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu1(x)
