@@ -16,14 +16,14 @@ class Model(nn.Module):
         self.conv1 = nn.Conv2d(num_channels, 16, kernel_size=3)
         self.bn1 = nn.BatchNorm2d(16)
         self.relu1 = nn.ReLU(inplace=True)
-        self.conv2 = nn.Conv2d(16, 16, kernel_size=3)
-        self.bn2 = nn.BatchNorm2d(16)
+        self.conv2 = nn.Conv2d(16, 8, kernel_size=3)
+        self.bn2 = nn.BatchNorm2d(8)
         self.relu2 = nn.ReLU(inplace=True)
         self.pool = nn.MaxPool2d(kernel_size=2)
         # self.fc1 = nn.Linear(128, 128)
         # self.bn3 = nn.BatchNorm1d(128)
         # self.relu3 = nn.ReLU(inplace=True)
-        self.fc2 = nn.Linear(3136, num_classes)
+        self.fc2 = nn.Linear(1568, num_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
