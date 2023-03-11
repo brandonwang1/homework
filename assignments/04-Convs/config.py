@@ -8,7 +8,7 @@ torch.backends.cudnn.benchmark = True
 
 
 class CONFIG:
-    batch_size = 128
+    batch_size = 256
     num_epochs = 8
 
     optimizer_factory: Callable[
