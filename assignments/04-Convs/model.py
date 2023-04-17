@@ -19,7 +19,7 @@ class Model(nn.Module):
         self.conv2 = nn.Conv2d(16, 16, kernel_size=2)
         self.bn2 = nn.BatchNorm2d(16)
         self.relu2 = nn.ReLU(inplace=True)
-        self.pool = nn.MaxPool2d(kernel_size=2)
+        self.pool = nn.MaxPool2d(kernel_size=2, stride=2)
         # self.fc1 = nn.Linear(1568, 128)
         # self.bn3 = nn.BatchNorm1d(128)
         # self.relu3 = nn.ReLU(inplace=True)
