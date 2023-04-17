@@ -4,6 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import gymnasium as gym
 
+
 class DQN(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(DQN, self).__init__()
@@ -15,6 +16,7 @@ class DQN(nn.Module):
         x = torch.relu(self.fc1(x))
         x = torch.relu(self.fc2(x))
         return self.fc3(x)
+
 
 class ReplayBuffer:
     def __init__(self, capacity):
@@ -36,10 +38,12 @@ class ReplayBuffer:
     def __len__(self):
         return len(self.buffer)
 
+
 class Agent:
     """
     A custom agent for the environment.
     """
+
     def __init__(
         self, action_space: gym.spaces.Discrete, observation_space: gym.spaces.Box
     ):
@@ -48,7 +52,9 @@ class Agent:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         self.dqn = DQN(observation_space.shape[0], action_space.n).to(self.device)
-        self.target_dqn = DQN(observation_space.shape[0], action_space.n).to(self.device)
+        self.target_dqn = DQN(observation_space.shape[0], action_space.n).to(
+            self.device
+        )
         self.optimizer = optim.Adam(self.dqn.parameters())
         self.replay_buffer = ReplayBuffer(10000)
         self.batch_size = 64
@@ -61,7 +67,11 @@ class Agent:
         Return an action given an observation.
         """
         with torch.no_grad():
-            state = torch.tensor(observation, dtype=torch.float32).unsqueeze(0).to(self.device)
+            state = (
+                torch.tensor(observation, dtype=torch.float32)
+                .unsqueeze(0)
+                .to(self.device)
+            )
             q_values = self.dqn(state)
         return int(q_values.argmax().item())
 
@@ -80,7 +90,9 @@ class Agent:
             return
 
         self.learning_steps += 1
-        state, action, reward, next_state, done = self.replay_buffer.sample(self.batch_size)
+        state, action, reward, next_state, done = self.replay_buffer.sample(
+            self.batch_size
+        )
         state = torch.tensor(state, dtype=torch.float32).to(self.device)
         action = torch.tensor(action, dtype=torch.long).to(self.device)
         reward = torch.tensor(reward, dtype=torch.float32).to(self.device)
@@ -90,7 +102,9 @@ class Agent:
         q_values = self.dqn(state)
         next_q_values = self.target_dqn(next_state)
         target_q_values = q_values.clone()
-        target_q_values[range(self.batch_size), action] = reward + self.gamma * next_q_values.max(1)[0] * (~done)
+        target_q_values[
+            range(self.batch_size), action
+        ] = reward + self.gamma * next_q_values.max(1)[0] * (~done)
 
         loss = nn.functional.mse_loss(q_values, target_q_values.detach())
         self.optimizer.zero_grad()
@@ -99,5 +113,3 @@ class Agent:
 
         if self.learning_steps % self.target_update_frequency == 0:
             self.target_dqn.load_state_dict(self.dqn.state_dict())
-
-       
